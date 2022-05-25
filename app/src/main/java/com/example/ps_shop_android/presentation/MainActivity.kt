@@ -1,7 +1,8 @@
-package com.example.ps_shop_android
+package com.example.ps_shop_android.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.ps_shop_android.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
