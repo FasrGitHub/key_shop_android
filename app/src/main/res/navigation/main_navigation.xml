@@ -29,14 +29,11 @@
         tools:layout="@layout/fragment_payment_window" >
         <action
             android:id="@+id/action_paymentWindowFragment_to_orderCreatedFragment"
-            app:destination="@id/orderCreatedFragment" />
+            app:destination="@id/orderCreatedFragment"
+            app:popUpTo="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderCreatedFragment"
         android:name="com.example.ps_shop_android.presentation.OrderCreatedFragment"
-        android:label="OrderCreatedFragment" >
-        <action
-            android:id="@+id/action_orderCreatedFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        android:label="OrderCreatedFragment" />
 </navigation>
