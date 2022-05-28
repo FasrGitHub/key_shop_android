@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ps_shop_android.R
 
-
-class SectionsCatalogFragment : Fragment() {
+class OrderCreatedFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sections_catalog, container, false)
+        return inflater.inflate(R.layout.fragment_order_created, container, false)
     }
 }

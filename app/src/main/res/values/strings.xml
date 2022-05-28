@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">ps_shop_android</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_price">Price:</string>
+    <string name="add_to_cart">add to cart</string>
+    <string name="basket">basket</string>
+    <string name="buy">buy</string>
+    <string name="pay_for_the_order">Ordering?</string>
+    <string name="email">Email:</string>
+    <string name="hint_email">Enter email</string>
+    <string name="crypto_wallet">Crypto wallet:</string>
+    <string name="hint_crypto_wallet">Enter crypto wallet</string>
+    <string name="after_payment">After payment, the keys will be sent to your mail.</string>
+    <string name="sum">Sum: %s КРИПТОДЕНЬГИ</string>
+    <string name="order_created">Order created!</string>
+    <string name="back_to_main">back to main</string>
 </resources>

@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.ps_shop_android.R
 
-class CartAndOrderingFragment : Fragment() {
+class PaymentWindowFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cart_and_ordering, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_payment_window, container, false)
     }
 }

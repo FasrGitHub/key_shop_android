@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.ps_shop_android.presentation.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_shoppingCartFragment"
+            app:destination="@id/shoppingCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.example.ps_shop_android.presentation.ShoppingCartFragment"
+        android:label="ShoppingCartFragment" >
+        <action
+            android:id="@+id/action_shoppingCartFragment_to_paymentWindowFragment"
+            app:destination="@id/paymentWindowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentWindowFragment"
+        android:name="com.example.ps_shop_android.presentation.PaymentWindowFragment"
+        android:label="fragment_payment_window"
+        tools:layout="@layout/fragment_payment_window" >
+        <action
+            android:id="@+id/action_paymentWindowFragment_to_orderCreatedFragment"
+            app:destination="@id/orderCreatedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderCreatedFragment"
+        android:name="com.example.ps_shop_android.presentation.OrderCreatedFragment"
+        android:label="OrderCreatedFragment" >
+        <action
+            android:id="@+id/action_orderCreatedFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
