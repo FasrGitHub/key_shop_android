@@ -12,7 +12,5 @@ interface ProductRepository {
 
     fun getCategory()
 
-    fun getIdProduct(): Int
-
     fun addProduct(product: Product)
 }

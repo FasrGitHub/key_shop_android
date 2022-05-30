@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.ps_shop_android.domain.models.Category
 import com.example.ps_shop_android.domain.models.Product
 import com.example.ps_shop_android.domain.repository.ProductRepository
-import kotlin.random.Random
 
 object ProductRepositoryImpl: ProductRepository {
 
@@ -18,7 +17,7 @@ object ProductRepositoryImpl: ProductRepository {
     private var autoIncrementProductId = 0
 
     init {
-        for (i in 0 until 5) {
+        for (i in 0 until 1000) {
             val product = Product(
                 "Test $i",
                 "test",
@@ -39,10 +38,6 @@ object ProductRepositoryImpl: ProductRepository {
     }
 
     override fun getCategory() {
-        TODO("Not yet implemented")
-    }
-
-    override fun getIdProduct(): Int {
         TODO("Not yet implemented")
     }
 
