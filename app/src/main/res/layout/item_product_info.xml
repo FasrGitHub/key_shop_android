@@ -11,17 +11,17 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivBannerGame"
+            android:id="@+id/iv_banner_game"
             android:layout_width="150dp"
             android:layout_height="250dp"
             android:layout_margin="8dp"
+            android:src="@android:mipmap/sym_def_app_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:mipmap/sym_def_app_icon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvNameGame"
+            android:id="@+id/tv_name_game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -31,13 +31,13 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivBannerGame"
+            app:layout_constraintStart_toEndOf="@id/iv_banner_game"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Название игры"
             />
 
         <TextView
-            android:id="@+id/tvDescriptionGame"
+            android:id="@+id/tv_description_game"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
@@ -45,15 +45,15 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@id/tvNameGame"
-            app:layout_constraintStart_toEndOf="@id/ivBannerGame"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_game"
+            app:layout_constraintStart_toEndOf="@id/iv_banner_game"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Описание игрыОписание игрыОписание игрыОписание игрыОписание игры
             Описание игрыОписание игрыОписание игрыОписание игрыОписание игрыОписание игры"
             />
 
         <TextView
-            android:id="@+id/tvLabelPrice"
+            android:id="@+id/tv_label_price"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
@@ -63,12 +63,12 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/label_price"
-            app:layout_constraintStart_toEndOf="@id/ivBannerGame"
-            app:layout_constraintBottom_toTopOf="@+id/buttonAddToCart"
+            app:layout_constraintStart_toEndOf="@id/iv_banner_game"
+            app:layout_constraintBottom_toTopOf="@+id/button_add_to_cart"
             />
 
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tv_price"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
@@ -77,19 +77,19 @@
             android:layout_marginBottom="8dp"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/tvLabelPrice"
-            app:layout_constraintBottom_toTopOf="@+id/buttonAddToCart"
+            app:layout_constraintStart_toEndOf="@id/tv_label_price"
+            app:layout_constraintBottom_toTopOf="@+id/button_add_to_cart"
             tools:text="14564"
             />
 
         <Button
-            android:id="@+id/buttonAddToCart"
+            android:id="@+id/button_add_to_cart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="12sp"
             android:text="@string/add_to_cart"
             android:layout_margin="8dp"
-            app:layout_constraintStart_toEndOf="@id/ivBannerGame"
+            app:layout_constraintStart_toEndOf="@id/iv_banner_game"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
