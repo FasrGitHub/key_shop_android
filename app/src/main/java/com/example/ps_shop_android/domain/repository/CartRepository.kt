@@ -1,13 +1,13 @@
 package com.example.ps_shop_android.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.example.ps_shop_android.domain.models.Cart
+import com.example.ps_shop_android.domain.models.Product
 
 interface CartRepository {
 
-    fun addCart(cart: Cart)
+    fun addProductCart(product: Product)
 
-    fun deleteCart(cart: Cart)
+    fun deleteProductCart(product: Product)
 
-    fun getAllCarts(): LiveData<List<Cart>>
+    fun getAllProductsCarts(): LiveData<List<Product>>
 }

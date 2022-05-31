@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentOrderCreatedBinding
 
 class OrderCreatedFragment : Fragment() {

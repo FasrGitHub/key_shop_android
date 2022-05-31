@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentMainBinding
-import com.example.ps_shop_android.domain.models.Cart
 
 class MainFragment : Fragment() {
 
@@ -38,7 +37,7 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.productList.observe(viewLifecycleOwner) {
-            productAdapter.productList = it
+            productAdapter.submitList(it)
         }
         setupClickListener()
     }
@@ -60,8 +59,7 @@ class MainFragment : Fragment() {
 
     private fun setupClickListener() {
         productAdapter.onProductClickListener = {
-            val newCart = Cart(it.id)
-            viewModel.addCart(newCart)
+            viewModel.addCart(it)
             //TODO log
             Log.d("MainFragment", "setupClickListener ${it.id}")
         }
