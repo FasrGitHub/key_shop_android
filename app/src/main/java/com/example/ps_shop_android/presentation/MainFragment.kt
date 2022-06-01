@@ -59,9 +59,9 @@ class MainFragment : Fragment() {
 
     private fun setupClickListener() {
         productAdapter.onProductClickListener = {
-            viewModel.addCart(it)
+            viewModel.addProductCart(it)
             //TODO log
-            Log.d("MainFragment", "setupClickListener ${it.id}")
+            Log.d("MainFragment", "setupClickListener $it")
         }
     }
 }

@@ -13,7 +13,7 @@ import com.example.ps_shop_android.databinding.FragmentShoppingCartBinding
 class ShoppingCartFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var productAdapter: ProductAdapter
+    private lateinit var productCartAdapter: ProductCartAdapter
 
     private var _binding: FragmentShoppingCartBinding? = null
     private val binding: FragmentShoppingCartBinding
@@ -35,11 +35,17 @@ class ShoppingCartFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.productCartList.observe(viewLifecycleOwner) {
-            productAdapter.submitList(it)
+            productCartAdapter.submitList(it)
         }
+        areThereProductsList()
+        setupClickListener()
+        getSumPrice()
 
         binding.buttonBuy.setOnClickListener {
             launchPaymentWindowFragment()
+        }
+        binding.buttonBackToMain.setOnClickListener {
+            launchMainFragment()
         }
     }
 
@@ -48,13 +54,40 @@ class ShoppingCartFragment : Fragment() {
         _binding = null
     }
 
+    private fun getSumPrice() {
+        binding.tvSumCart.text = String.format(getString(
+            R.string.sum,
+            viewModel.getSumPriceCart().toString()
+        ))
+    }
+
+    private fun areThereProductsList() {
+        if (viewModel.areThereProductsList()) {
+            binding.buttonBuy.visibility = View.INVISIBLE
+            binding.tvSumCart.visibility = View.INVISIBLE
+            binding.buttonBackToMain.visibility = View.VISIBLE
+        }
+    }
+
     private fun setupRecyclerView() {
         val rvCartList = binding.rvCartList
-        productAdapter = ProductAdapter()
-        rvCartList.adapter = productAdapter
+        productCartAdapter = ProductCartAdapter()
+        rvCartList.adapter = productCartAdapter
+    }
+
+    private fun setupClickListener() {
+        productCartAdapter.onProductClickListener = {
+            viewModel.deleteProductCart(it)
+            getSumPrice()
+            areThereProductsList()
+        }
     }
 
     private fun launchPaymentWindowFragment(){
         findNavController().navigate(R.id.action_shoppingCartFragment_to_paymentWindowFragment)
+    }
+
+    private fun launchMainFragment(){
+        findNavController().popBackStack()
     }
 }

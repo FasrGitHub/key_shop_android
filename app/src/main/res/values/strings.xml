@@ -11,7 +11,8 @@
     <string name="crypto_wallet">Crypto wallet:</string>
     <string name="hint_crypto_wallet">Enter crypto wallet</string>
     <string name="after_payment">After payment, the keys will be sent to your mail.</string>
-    <string name="sum">Sum: %s КРИПТОДЕНЬГИ</string>
+    <string name="sum">Sum: %s</string>
     <string name="order_created">Order created!</string>
     <string name="back_to_main">back to main</string>
+    <string name="remove_from_cart">remove from cart</string>
 </resources>

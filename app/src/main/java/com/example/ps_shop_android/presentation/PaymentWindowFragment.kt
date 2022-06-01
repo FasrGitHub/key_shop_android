@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentPaymentWindowBinding
 
 class PaymentWindowFragment : Fragment() {
+
+    private lateinit var viewModel: MainViewModel
 
     private var _binding: FragmentPaymentWindowBinding? = null
     private val binding: FragmentPaymentWindowBinding
@@ -26,6 +29,11 @@ class PaymentWindowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        getSumPrice()
+
         binding.buttonPay.setOnClickListener {
             launchOrderCreatedFragment()
         }
@@ -34,6 +42,13 @@ class PaymentWindowFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getSumPrice() {
+        binding.tvSum.text = String.format(getString(
+            R.string.sum,
+            viewModel.getSumPriceCart().toString()
+        ))
     }
 
     private fun launchOrderCreatedFragment(){

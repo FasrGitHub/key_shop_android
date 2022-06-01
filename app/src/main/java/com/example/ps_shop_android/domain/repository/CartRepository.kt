@@ -10,4 +10,8 @@ interface CartRepository {
     fun deleteProductCart(product: Product)
 
     fun getAllProductsCarts(): LiveData<List<Product>>
+
+    fun areThereProductsList(): Boolean
+
+    fun getSumPriceCart(): Int
 }

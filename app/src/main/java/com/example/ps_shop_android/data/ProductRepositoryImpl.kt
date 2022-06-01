@@ -22,8 +22,8 @@ object ProductRepositoryImpl: ProductRepository {
                 "Test $i",
                 "test",
                 "TestTestTest$i",
+                1000 + i,
                 i,
-                i
             )
             addProduct(product)
         }
