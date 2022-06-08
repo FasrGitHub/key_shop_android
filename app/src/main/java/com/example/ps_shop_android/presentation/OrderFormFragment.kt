@@ -8,22 +8,22 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
-import com.example.ps_shop_android.databinding.FragmentPaymentWindowBinding
+import com.example.ps_shop_android.databinding.FragmentOrderFormBinding
 
-class PaymentWindowFragment : Fragment() {
+class OrderFormFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    private var _binding: FragmentPaymentWindowBinding? = null
-    private val binding: FragmentPaymentWindowBinding
-        get() = _binding ?: throw RuntimeException("FragmentPaymentWindowBinding == null")
+    private var _binding: FragmentOrderFormBinding? = null
+    private val binding: FragmentOrderFormBinding
+        get() = _binding ?: throw RuntimeException("FragmentOrderFormBinding == null")
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPaymentWindowBinding.inflate(inflater, container, false)
+        _binding = FragmentOrderFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,6 +52,6 @@ class PaymentWindowFragment : Fragment() {
     }
 
     private fun launchOrderCreatedFragment(){
-        findNavController().navigate(R.id.action_paymentWindowFragment_to_orderCreatedFragment)
+        findNavController().navigate(R.id.action_orderFormFragment_to_orderCreatedFragment)
     }
 }

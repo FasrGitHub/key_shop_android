@@ -40,46 +40,29 @@
             android:id="@+id/tv_description_game"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_game"
-            app:layout_constraintStart_toEndOf="@id/iv_banner_game"
+            app:layout_constraintBottom_toTopOf="@+id/tv_price"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Описание игрыОписание игрыОписание игрыОписание игрыОписание игры
-            Описание игрыОписание игрыОписание игрыОписание игрыОписание игрыОписание игры"
-            />
-
-        <TextView
-            android:id="@+id/tv_label_price"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="@string/label_price"
             app:layout_constraintStart_toEndOf="@id/iv_banner_game"
-            app:layout_constraintBottom_toTopOf="@+id/button_add_to_cart"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tv_name_game"
+            tools:text="Описание игрыОписание игрыОписание игрыОписание игрыОписание игры
+            Описание игрыОписание игрыОписание игрыОписание игрыОписание игрыОписание игры" />
 
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:text="@string/label_price"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/tv_label_price"
             app:layout_constraintBottom_toTopOf="@+id/button_add_to_cart"
-            tools:text="14564"
+            app:layout_constraintStart_toEndOf="@id/iv_banner_game"
             />
 
         <Button

@@ -1,12 +1,9 @@
 package com.example.ps_shop_android.presentation
 
-import android.widget.EditText
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ps_shop_android.data.CartRepositoryImpl
 import com.example.ps_shop_android.data.ProductRepositoryImpl
-import com.example.ps_shop_android.domain.models.Product
+import com.example.ps_shop_android.domain.pojo.Product
 import com.example.ps_shop_android.domain.usecase.*
 
 class MainViewModel: ViewModel() {

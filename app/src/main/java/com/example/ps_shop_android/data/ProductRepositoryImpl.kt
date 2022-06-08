@@ -1,32 +1,51 @@
 package com.example.ps_shop_android.data
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ps_shop_android.domain.models.Category
-import com.example.ps_shop_android.domain.models.Product
+import com.example.ps_shop_android.data.api.ApiFactory
+import com.example.ps_shop_android.domain.pojo.Category
+import com.example.ps_shop_android.domain.pojo.Product
 import com.example.ps_shop_android.domain.repository.ProductRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
-object ProductRepositoryImpl: ProductRepository {
+
+@SuppressLint("CheckResult")
+object ProductRepositoryImpl : ProductRepository {
 
     private val categoriesListLD = MutableLiveData<List<Category>>()
-    private val categoriesList = mutableListOf<Category>()
+    private var categoriesList = mutableListOf<Category>()
 
     private val productsListLD = MutableLiveData<List<Product>>()
-    private val productsList = mutableListOf<Product>()
+    private var productsList = mutableListOf<Product>()
 
     private var autoIncrementProductId = 0
 
     init {
-        for (i in 0 until 1000) {
-            val product = Product(
-                "Test $i",
-                "test",
-                "TestTestTest$i",
-                1000 + i,
-                i,
-            )
-            addProduct(product)
-        }
+        //TODO переделать json запрос!!!
+        ApiFactory.apiService.getCategoriesList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                categoriesList = it as MutableList<Category>
+                updateProductsList()
+                Log.d("TEST", it.toString())
+            }, {
+                Log.d("Error", it.message.toString())
+            })
+
+        ApiFactory.apiService.getProductsList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                productsList = it as MutableList<Product>
+                updateProductsList()
+                Log.d("TEST", it.toString())
+            }, {
+                Log.d("Error", it.message.toString())
+            })
     }
 
     override fun getAllCategories(): LiveData<List<Category>> {

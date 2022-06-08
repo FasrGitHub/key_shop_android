@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentShoppingCartBinding
+import com.example.ps_shop_android.presentation.adapters.ProductCartAdapter
 
 class ShoppingCartFragment : Fragment() {
 
@@ -42,7 +43,7 @@ class ShoppingCartFragment : Fragment() {
         getSumPrice()
 
         binding.buttonBuy.setOnClickListener {
-            launchPaymentWindowFragment()
+            launchOrderFormFragment()
         }
         binding.buttonBackToMain.setOnClickListener {
             launchMainFragment()
@@ -83,8 +84,8 @@ class ShoppingCartFragment : Fragment() {
         }
     }
 
-    private fun launchPaymentWindowFragment(){
-        findNavController().navigate(R.id.action_shoppingCartFragment_to_paymentWindowFragment)
+    private fun launchOrderFormFragment(){
+        findNavController().navigate(R.id.action_shoppingCartFragment_to_orderFormFragment)
     }
 
     private fun launchMainFragment(){

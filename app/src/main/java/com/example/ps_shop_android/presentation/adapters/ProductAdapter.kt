@@ -1,4 +1,4 @@
-package com.example.ps_shop_android.presentation
+package com.example.ps_shop_android.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ps_shop_android.R
-import com.example.ps_shop_android.domain.models.Product
+import com.example.ps_shop_android.domain.pojo.Product
+import com.example.ps_shop_android.presentation.adapters.ProductAdapter.ProductViewHolder
 
-class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(ProductDiffCallback()) {
+class ProductAdapter : ListAdapter<Product, ProductViewHolder>(ProductDiffCallback()) {
 
     var onProductClickListener: ((Product) -> Unit)? = null
 

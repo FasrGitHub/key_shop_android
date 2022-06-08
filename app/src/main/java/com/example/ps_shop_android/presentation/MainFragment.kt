@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentMainBinding
+import com.example.ps_shop_android.presentation.adapters.ProductAdapter
 
 class MainFragment : Fragment() {
 

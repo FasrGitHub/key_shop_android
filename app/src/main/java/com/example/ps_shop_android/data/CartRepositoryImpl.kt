@@ -2,7 +2,7 @@ package com.example.ps_shop_android.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ps_shop_android.domain.models.Product
+import com.example.ps_shop_android.domain.pojo.Product
 import com.example.ps_shop_android.domain.repository.CartRepository
 
 object CartRepositoryImpl : CartRepository {

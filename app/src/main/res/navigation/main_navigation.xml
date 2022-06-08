@@ -20,16 +20,16 @@
         android:name="com.example.ps_shop_android.presentation.ShoppingCartFragment"
         android:label="ShoppingCartFragment" >
         <action
-            android:id="@+id/action_shoppingCartFragment_to_paymentWindowFragment"
-            app:destination="@id/paymentWindowFragment" />
+            android:id="@+id/action_shoppingCartFragment_to_orderFormFragment"
+            app:destination="@id/orderFromFragment" />
     </fragment>
     <fragment
-        android:id="@+id/paymentWindowFragment"
-        android:name="com.example.ps_shop_android.presentation.PaymentWindowFragment"
-        android:label="fragment_payment_window"
-        tools:layout="@layout/fragment_payment_window" >
+        android:id="@+id/orderFromFragment"
+        android:name="com.example.ps_shop_android.presentation.OrderFormFragment"
+        android:label="fragment_order_from"
+        tools:layout="@layout/fragment_order_form">
         <action
-            android:id="@+id/action_paymentWindowFragment_to_orderCreatedFragment"
+            android:id="@+id/action_orderFormFragment_to_orderCreatedFragment"
             app:destination="@id/orderCreatedFragment"
             app:popUpTo="@id/mainFragment" />
     </fragment>

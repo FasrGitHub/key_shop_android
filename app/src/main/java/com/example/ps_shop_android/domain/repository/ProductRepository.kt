@@ -1,8 +1,8 @@
 package com.example.ps_shop_android.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.example.ps_shop_android.domain.models.Category
-import com.example.ps_shop_android.domain.models.Product
+import com.example.ps_shop_android.domain.pojo.Category
+import com.example.ps_shop_android.domain.pojo.Product
 
 interface ProductRepository {
 
