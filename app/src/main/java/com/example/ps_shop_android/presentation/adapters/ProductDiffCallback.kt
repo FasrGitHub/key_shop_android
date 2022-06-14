@@ -1,7 +1,7 @@
 package com.example.ps_shop_android.presentation.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.ps_shop_android.domain.pojo.Product
+import com.example.ps_shop_android.domain.model.Product
 
 class ProductDiffCallback : DiffUtil.ItemCallback<Product>() {
 

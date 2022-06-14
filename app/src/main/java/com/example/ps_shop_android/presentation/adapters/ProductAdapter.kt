@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ps_shop_android.R
-import com.example.ps_shop_android.domain.pojo.Product
+import com.example.ps_shop_android.domain.model.Product
 import com.example.ps_shop_android.presentation.adapters.ProductAdapter.ProductViewHolder
 
 class ProductAdapter : ListAdapter<Product, ProductViewHolder>(ProductDiffCallback()) {

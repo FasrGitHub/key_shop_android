@@ -1,12 +1,10 @@
-package com.example.ps_shop_android.domain.pojo
+package com.example.ps_shop_android.data.network.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Category(
-    @SerializedName("id")
-    @Expose
-    val id: Int? = null,
+data class CategoryDto(
+
     @SerializedName("username")
     @Expose
     val title: String? = null,

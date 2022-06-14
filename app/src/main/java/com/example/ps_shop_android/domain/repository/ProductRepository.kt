@@ -1,8 +1,8 @@
 package com.example.ps_shop_android.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.example.ps_shop_android.domain.pojo.Category
-import com.example.ps_shop_android.domain.pojo.Product
+import com.example.ps_shop_android.domain.model.Category
+import com.example.ps_shop_android.domain.model.Product
 
 interface ProductRepository {
 
@@ -13,4 +13,6 @@ interface ProductRepository {
     fun getCategory()
 
     fun addProduct(product: Product)
+
+    suspend fun loadData()
 }

@@ -1,8 +1,8 @@
-package com.example.ps_shop_android.data
+package com.example.ps_shop_android.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.ps_shop_android.domain.pojo.Product
+import com.example.ps_shop_android.domain.model.Product
 import com.example.ps_shop_android.domain.repository.CartRepository
 
 object CartRepositoryImpl : CartRepository {
@@ -35,6 +35,10 @@ object CartRepositoryImpl : CartRepository {
         } else { for (product in cartProductList.iterator()) sum += product.price
             sum
         }
+    }
+
+    override fun getJsonResponse() {
+
     }
 
     private fun updateCartList() {

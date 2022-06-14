@@ -1,9 +1,9 @@
-package com.example.ps_shop_android.domain.pojo
+package com.example.ps_shop_android.data.network.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Product(
+data class ProductDto(
     @SerializedName("title")
     @Expose
     val name: String? = null,

@@ -1,7 +1,7 @@
 package com.example.ps_shop_android.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.example.ps_shop_android.domain.pojo.Product
+import com.example.ps_shop_android.domain.model.Product
 
 interface CartRepository {
 
@@ -14,4 +14,6 @@ interface CartRepository {
     fun areThereProductsList(): Boolean
 
     fun getSumPriceCart(): Int
+
+    fun getJsonResponse()
 }
