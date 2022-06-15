@@ -8,7 +8,7 @@ interface ProductRepository {
 
     fun getAllProducts(): LiveData<List<Product>>
 
-    fun addProduct(productDb: ProductDbModel)
+    suspend fun addProduct(productDb: ProductDbModel)
 
     suspend fun loadData()
 }
