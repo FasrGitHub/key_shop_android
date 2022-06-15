@@ -1,5 +1,6 @@
 package com.example.ps_shop_android.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,15 +10,28 @@ import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentMainBinding
 import com.example.ps_shop_android.presentation.adapters.ProductAdapter
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var productAdapter: ProductAdapter
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (requireActivity().application as MainApp).component
+    }
+
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding ?: throw RuntimeException("FragmentMainBinding == null")
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +50,7 @@ class MainFragment : Fragment() {
 
         setupRecyclerView()
 
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         viewModel.productList.observe(viewLifecycleOwner) {
             productAdapter.submitList(it)
         }

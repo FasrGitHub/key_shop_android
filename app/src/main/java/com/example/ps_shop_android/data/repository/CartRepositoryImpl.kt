@@ -1,47 +1,54 @@
 package com.example.ps_shop_android.data.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import com.example.ps_shop_android.data.database.CartDao
+import com.example.ps_shop_android.data.mapper.ProductMapper
 import com.example.ps_shop_android.domain.model.Product
 import com.example.ps_shop_android.domain.repository.CartRepository
+import javax.inject.Inject
 
-object CartRepositoryImpl : CartRepository {
-
-    private val cartProductListLD = MutableLiveData<List<Product>>()
-    private val cartProductList = mutableListOf<Product>()
+class CartRepositoryImpl @Inject constructor(
+    private val mapper: ProductMapper,
+    private val cartDao: CartDao,
+) : CartRepository {
 
     override fun addProductCart(product: Product) {
-        cartProductList.add(product)
-        updateCartList()
+//        cartDao.addProductToCart(
+//            mapper.mapEntityToDbModel(product)
+//        )
     }
 
     override fun deleteProductCart(product: Product) {
-        cartProductList.remove(product)
-        updateCartList()
+//        cartDao.deleteProductFromCart(
+//            mapper.mapEntityToDbModel(product)
+//        )
     }
 
     override fun getAllProductsCarts(): LiveData<List<Product>> {
-        return cartProductListLD
+        return Transformations.map(cartDao.getAllProductsCart()) {
+            it.map {
+                mapper.mapDbModelToEntity(it)
+            }
+        }
     }
 
     override fun areThereProductsList(): Boolean {
-        return cartProductListLD.value.isNullOrEmpty()
+//        return cartProductListLD.value.isNullOrEmpty()
+        return true
     }
 
     override fun getSumPriceCart(): Int {
         var sum = 0
-        return if (areThereProductsList()) {
-            sum
-        } else { for (product in cartProductList.iterator()) sum += product.price
-            sum
-        }
+//        return if (areThereProductsList()) {
+//            sum
+//        } else { for (product in cartProductList.iterator()) sum += product.price
+//            sum
+//        }
+        return sum
     }
 
     override fun getJsonResponse() {
 
-    }
-
-    private fun updateCartList() {
-        cartProductListLD.value = cartProductList.toList()
     }
 }
