@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentShoppingCartBinding
+import com.example.ps_shop_android.domain.model.Product
 import com.example.ps_shop_android.presentation.adapters.ProductCartAdapter
 import javax.inject.Inject
 
@@ -51,17 +52,10 @@ class ShoppingCartFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         viewModel.productCartList.observe(viewLifecycleOwner) {
             productCartAdapter.submitList(it)
+            areThereProductsList(it)
+            getSumPrice(it)
         }
-        areThereProductsList()
         setupClickListener()
-        getSumPrice()
-
-        binding.buttonBuy.setOnClickListener {
-            launchOrderFormFragment()
-        }
-        binding.buttonBackToMain.setOnClickListener {
-            launchMainFragment()
-        }
     }
 
     override fun onDestroyView() {
@@ -69,18 +63,24 @@ class ShoppingCartFragment : Fragment() {
         _binding = null
     }
 
-    private fun getSumPrice() {
-        binding.tvSumCart.text = String.format(getString(
-            R.string.sum,
-            viewModel.getSumPriceCart().toString()
-        ))
+    private fun getSumPrice(productsList: List<Product>) {
+        binding.tvSumCart.text = String.format(
+            getString(
+                R.string.sum,
+                viewModel.getSumPriceCart(productsList).toString()
+            )
+        )
     }
 
-    private fun areThereProductsList() {
-        if (viewModel.areThereProductsList()) {
+    private fun areThereProductsList(list:List<Product>) {
+        if (list.isEmpty()) {
             binding.buttonBuy.visibility = View.INVISIBLE
             binding.tvSumCart.visibility = View.INVISIBLE
             binding.buttonBackToMain.visibility = View.VISIBLE
+        } else {
+            binding.buttonBuy.visibility = View.VISIBLE
+            binding.tvSumCart.visibility = View.VISIBLE
+            binding.buttonBackToMain.visibility = View.INVISIBLE
         }
     }
 
@@ -93,16 +93,20 @@ class ShoppingCartFragment : Fragment() {
     private fun setupClickListener() {
         productCartAdapter.onProductClickListener = {
             viewModel.deleteProductCart(it)
-            getSumPrice()
-            areThereProductsList()
+        }
+        binding.buttonBuy.setOnClickListener {
+            launchOrderFormFragment()
+        }
+        binding.buttonBackToMain.setOnClickListener {
+            launchMainFragment()
         }
     }
 
-    private fun launchOrderFormFragment(){
+    private fun launchOrderFormFragment() {
         findNavController().navigate(R.id.action_shoppingCartFragment_to_orderFormFragment)
     }
 
-    private fun launchMainFragment(){
+    private fun launchMainFragment() {
         findNavController().popBackStack()
     }
 }

@@ -13,39 +13,36 @@ class CartRepositoryImpl @Inject constructor(
     private val cartDao: CartDao,
 ) : CartRepository {
 
-    override fun addProductCart(product: Product) {
-//        cartDao.addProductToCart(
-//            mapper.mapEntityToDbModel(product)
-//        )
+    override suspend fun addProductCart(product: Product) {
+        cartDao.addProductToCart(
+            mapper.mapEntityToCartDbModel(product)
+        )
     }
 
-    override fun deleteProductCart(product: Product) {
-//        cartDao.deleteProductFromCart(
-//            mapper.mapEntityToDbModel(product)
-//        )
+    override suspend fun deleteProductCart(product: Product) {
+        cartDao.deleteProductFromCart(
+            mapper.mapEntityToCartDbModel(product)
+        )
     }
 
-    override fun getAllProductsCarts(): LiveData<List<Product>> {
+    override fun getAllProductsCart(): LiveData<List<Product>> {
         return Transformations.map(cartDao.getAllProductsCart()) {
             it.map {
-                mapper.mapDbModelToEntity(it)
+                mapper.mapCartDbModelToEntity(it)
             }
         }
     }
 
-    override fun areThereProductsList(): Boolean {
-//        return cartProductListLD.value.isNullOrEmpty()
-        return true
-    }
-
-    override fun getSumPriceCart(): Int {
+    override fun getSumPriceCart(productsList: List<Product>): Int {
         var sum = 0
-//        return if (areThereProductsList()) {
-//            sum
-//        } else { for (product in cartProductList.iterator()) sum += product.price
-//            sum
-//        }
-        return sum
+        return if (productsList.isEmpty()){
+            sum
+        } else {
+            for (product in productsList){
+                sum += product.price!!
+            }
+            sum
+        }
     }
 
     override fun getJsonResponse() {

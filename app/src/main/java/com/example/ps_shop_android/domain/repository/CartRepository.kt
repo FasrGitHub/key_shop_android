@@ -5,15 +5,13 @@ import com.example.ps_shop_android.domain.model.Product
 
 interface CartRepository {
 
-    fun addProductCart(product: Product)
+    suspend fun addProductCart(product: Product)
 
-    fun deleteProductCart(product: Product)
+    suspend fun deleteProductCart(product: Product)
 
-    fun getAllProductsCarts(): LiveData<List<Product>>
+    fun getAllProductsCart(): LiveData<List<Product>>
 
-    fun areThereProductsList(): Boolean
-
-    fun getSumPriceCart(): Int
+    fun getSumPriceCart(productsList: List<Product>): Int
 
     fun getJsonResponse()
 }

@@ -19,7 +19,7 @@ class ProductRepositoryImpl @Inject constructor(
     override fun getAllProducts(): LiveData<List<Product>> {
         return Transformations.map(productDao.getAllProducts()) {
             it.map {
-                mapper.mapDbModelToEntity(it)
+                mapper.mapProductDbModelToEntity(it)
             }
         }
     }
@@ -32,7 +32,7 @@ class ProductRepositoryImpl @Inject constructor(
         try {
             val productsDtoList = apiService.getProductsList()
             productsDtoList.map {
-                addProduct(mapper.mapDtoToDbModel(it))
+                addProduct(mapper.mapDtoToProductDbModel(it))
             }
         } catch (e: Exception) {
             Log.d("ProductRepositoryImpl", "loadDataERROR")

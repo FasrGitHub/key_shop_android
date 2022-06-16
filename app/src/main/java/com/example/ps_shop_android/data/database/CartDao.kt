@@ -7,11 +7,11 @@ import androidx.room.*
 interface CartDao {
 
     @Query("SELECT * FROM products_cart_list")
-    fun getAllProductsCart(): LiveData<List<ProductDbModel>>
+    fun getAllProductsCart(): LiveData<List<CartDbModel>>
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    fun addProductToCart(productDbModel: ProductDbModel)
-//
-//    @Delete
-//    fun deleteProductFromCart(productDb: ProductDbModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addProductToCart(cartDbModel: CartDbModel)
+
+    @Delete
+    suspend fun deleteProductFromCart(cartDb: CartDbModel)
 }

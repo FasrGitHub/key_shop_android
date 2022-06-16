@@ -7,5 +7,5 @@ class GetAllProductsCartsUseCase @Inject constructor(
     private val cartRepository: CartRepository
     ) {
 
-    operator fun invoke() = cartRepository.getAllProductsCarts()
+    operator fun invoke() = cartRepository.getAllProductsCart()
 }

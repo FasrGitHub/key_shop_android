@@ -59,10 +59,10 @@ class OrderFormFragment : Fragment() {
     }
 
     private fun getSumPrice() {
-        binding.tvSum.text = String.format(getString(
-            R.string.sum,
-            viewModel.getSumPriceCart().toString()
-        ))
+//        binding.tvSum.text = String.format(getString(
+//            R.string.sum,
+//            viewModel.getSumPriceCart().toString()
+//        ))
     }
 
     private fun launchOrderCreatedFragment(){

@@ -8,5 +8,5 @@ class DeleteProductCartUseCase @Inject constructor(
     private val cartRepository: CartRepository
     ) {
 
-    operator fun invoke(product: Product) = cartRepository.deleteProductCart(product)
+    suspend operator fun invoke(product: Product) = cartRepository.deleteProductCart(product)
 }

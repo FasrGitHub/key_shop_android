@@ -9,7 +9,6 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val getAllProductsCartsUseCase: GetAllProductsCartsUseCase,
-    private val areThereProductsListUseCase: AreThereProductsListUseCase,
     private val addProductCartUseCase: AddProductCartUseCase,
     private val deleteProductCartUseCase: DeleteProductCartUseCase,
     private val getSumPriceCartUseCase: GetSumPriceCartUseCase,
@@ -30,18 +29,18 @@ class MainViewModel @Inject constructor(
     val productList = getAllProductsUseCase()
 
     fun addProductCart(product: Product) {
-        addProductCartUseCase(product)
-    }
-
-    fun getSumPriceCart(): Int {
-        return getSumPriceCartUseCase()
-    }
-
-    fun areThereProductsList(): Boolean {
-        return areThereProductsListUseCase()
+        viewModelScope.launch {
+            addProductCartUseCase(product)
+        }
     }
 
     fun deleteProductCart(product: Product) {
-        deleteProductCartUseCase(product)
+        viewModelScope.launch {
+            deleteProductCartUseCase(product)
+        }
+    }
+
+    fun getSumPriceCart(productsList: List<Product>): Int {
+        return getSumPriceCartUseCase(productsList)
     }
 }

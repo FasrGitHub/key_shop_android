@@ -8,5 +8,5 @@ class AddProductCartUseCase @Inject constructor(
     private val cartRepository: CartRepository
     ) {
 
-    operator fun invoke(product: Product) = cartRepository.addProductCart(product)
+    suspend operator fun invoke(product: Product) = cartRepository.addProductCart(product)
 }
