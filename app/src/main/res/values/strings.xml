@@ -15,4 +15,6 @@
     <string name="order_created">Order created!</string>
     <string name="back_to_main">back to main</string>
     <string name="remove_from_cart">remove from cart</string>
+    <string name="error_input_email">Invalid email</string>
+    <string name="error_input_wallet">Invalid wallet</string>
 </resources>

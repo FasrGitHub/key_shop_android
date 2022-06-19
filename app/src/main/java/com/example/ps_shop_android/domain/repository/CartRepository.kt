@@ -13,5 +13,5 @@ interface CartRepository {
 
     fun getSumPriceCart(productsList: List<Product>): Int
 
-    fun getJsonResponse()
+    fun getJsonResponse(inputEmail: String, inputWallet: String)
 }

@@ -1,5 +1,6 @@
 package com.example.ps_shop_android.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.ps_shop_android.data.database.CartDao
@@ -45,7 +46,8 @@ class CartRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getJsonResponse() {
-
+    override fun getJsonResponse(inputEmail: String, inputWallet: String) {
+        Log.d("getJsonResponse", "inputEmail $inputEmail")
+        Log.d("getJsonResponse", "inputWallet $inputWallet")
     }
 }
