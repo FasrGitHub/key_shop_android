@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.ps_shop_android.data.database.CartDao
 import com.example.ps_shop_android.data.mapper.ProductMapper
+import com.example.ps_shop_android.data.network.model.OrderDto
 import com.example.ps_shop_android.domain.model.Product
 import com.example.ps_shop_android.domain.repository.CartRepository
 import javax.inject.Inject
@@ -24,6 +25,10 @@ class CartRepositoryImpl @Inject constructor(
         cartDao.deleteProductFromCart(
             mapper.mapEntityToCartDbModel(product)
         )
+    }
+
+    override suspend fun deleteAllProductsCart() {
+        cartDao.deleteAllProductsCart()
     }
 
     override fun getAllProductsCart(): LiveData<List<Product>> {
@@ -46,8 +51,12 @@ class CartRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getJsonResponse(inputEmail: String, inputWallet: String) {
-        Log.d("getJsonResponse", "inputEmail $inputEmail")
-        Log.d("getJsonResponse", "inputWallet $inputWallet")
+    override fun getJsonResponse(
+        inputEmail: String,
+        inputWallet: String,
+        productsList: List<Product>
+    ) {
+        val orderDto = OrderDto(inputEmail, inputWallet, productsList)
+        Log.d("getJsonResponse", "input $orderDto")
     }
 }

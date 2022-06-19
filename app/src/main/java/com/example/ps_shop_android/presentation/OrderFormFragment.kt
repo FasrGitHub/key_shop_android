@@ -49,20 +49,25 @@ class OrderFormFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         viewModel.productCartList.observe(viewLifecycleOwner) {
             getSumPrice(it)
+            launchPay(it)
         }
         addTextChangeListener()
-        binding.buttonPay.setOnClickListener {
-            viewModel.getJsonResponse(
-                binding.etEmailAddress.text?.toString(),
-                binding.etCryptoWallet.text?.toString(),
-            )
-            observeViewModel()
-        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun launchPay(productsList: List<Product>) {
+        binding.buttonPay.setOnClickListener {
+            viewModel.getJsonResponse(
+                binding.etEmailAddress.text?.toString(),
+                binding.etCryptoWallet.text?.toString(),
+                productsList,
+            )
+            observeViewModel()
+        }
     }
 
     private fun getSumPrice(productsList: List<Product>) {
@@ -72,10 +77,6 @@ class OrderFormFragment : Fragment() {
                 viewModel.getSumPriceCart(productsList).toString()
             )
         )
-    }
-
-    private fun launchOrderCreatedFragment() {
-        findNavController().navigate(R.id.action_orderFormFragment_to_orderCreatedFragment)
     }
 
     private fun addTextChangeListener() {
@@ -123,7 +124,13 @@ class OrderFormFragment : Fragment() {
             }
             binding.tilCryptoWallet.error = message
         }
-        if (isValid) launchOrderCreatedFragment()
+        if (isValid){
+            viewModel.deleteAllProductsCart()
+            launchOrderCreatedFragment()
+        }
+    }
 
+    private fun launchOrderCreatedFragment() {
+        findNavController().navigate(R.id.action_orderFormFragment_to_orderCreatedFragment)
     }
 }

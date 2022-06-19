@@ -17,6 +17,7 @@ class MainViewModel @Inject constructor(
     private val getAllProductsUseCase: GetAllProductsUseCase,
     private val getJsonResponseUseCase: GetJsonResponseUseCase,
     private val loadDataUseCase: LoadDataUseCase,
+    private val deleteAllProductsCartUseCase: DeleteAllProductsCartUseCase,
 ) : ViewModel() {
 
     // TODO делается запрос каждый раз когда создается view возможно сделать новую view model или
@@ -39,6 +40,12 @@ class MainViewModel @Inject constructor(
 
     val productList = getAllProductsUseCase()
 
+    fun deleteAllProductsCart() {
+        viewModelScope.launch {
+            deleteAllProductsCartUseCase()
+        }
+    }
+
     fun addProductCart(product: Product) {
         viewModelScope.launch {
             addProductCartUseCase(product)
@@ -55,12 +62,12 @@ class MainViewModel @Inject constructor(
         return getSumPriceCartUseCase(productsList)
     }
 
-    fun getJsonResponse(inputEmail: String?, inputWallet: String?) {
+    fun getJsonResponse(inputEmail: String?, inputWallet: String?, productsList: List<Product>) {
         val email = parseEmail(inputEmail)
         val wallet = parseWallet(inputWallet)
         val fieldsValid = validateInput(email, wallet)
         if (fieldsValid) {
-            getJsonResponseUseCase(email, wallet)
+            getJsonResponseUseCase(email, wallet, productsList)
         }
     }
 
