@@ -12,11 +12,12 @@ import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentShoppingCartBinding
 import com.example.ps_shop_android.domain.model.Product
 import com.example.ps_shop_android.presentation.adapters.ProductCartAdapter
+import com.example.ps_shop_android.presentation.viewmodels.OrderViewModel
 import javax.inject.Inject
 
 class ShoppingCartFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: OrderViewModel
     private lateinit var productCartAdapter: ProductCartAdapter
 
     @Inject
@@ -49,7 +50,7 @@ class ShoppingCartFragment : Fragment() {
 
         setupRecyclerView()
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[OrderViewModel::class.java]
         viewModel.productCartList.observe(viewLifecycleOwner) {
             productCartAdapter.submitList(it)
             areThereProductsList(it)

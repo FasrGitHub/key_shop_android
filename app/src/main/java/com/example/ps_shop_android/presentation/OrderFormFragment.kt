@@ -13,11 +13,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentOrderFormBinding
 import com.example.ps_shop_android.domain.model.Product
+import com.example.ps_shop_android.presentation.viewmodels.OrderViewModel
 import javax.inject.Inject
 
 class OrderFormFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: OrderViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -46,7 +47,7 @@ class OrderFormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[OrderViewModel::class.java]
         viewModel.productCartList.observe(viewLifecycleOwner) {
             getSumPrice(it)
             launchPay(it)

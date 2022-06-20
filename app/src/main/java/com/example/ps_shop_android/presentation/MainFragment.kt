@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentMainBinding
 import com.example.ps_shop_android.presentation.adapters.ProductAdapter
+import com.example.ps_shop_android.presentation.viewmodels.MainViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject

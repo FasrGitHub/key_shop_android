@@ -1,4 +1,4 @@
-package com.example.ps_shop_android.presentation
+package com.example.ps_shop_android.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,14 +9,11 @@ import com.example.ps_shop_android.domain.usecase.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class OrderViewModel @Inject constructor(
     private val getAllProductsCartsUseCase: GetAllProductsCartsUseCase,
-    private val addProductCartUseCase: AddProductCartUseCase,
     private val deleteProductCartUseCase: DeleteProductCartUseCase,
     private val getSumPriceCartUseCase: GetSumPriceCartUseCase,
-    private val getAllProductsUseCase: GetAllProductsUseCase,
     private val getJsonResponseUseCase: GetJsonResponseUseCase,
-    private val loadDataUseCase: LoadDataUseCase,
     private val deleteAllProductsCartUseCase: DeleteAllProductsCartUseCase,
 ) : ViewModel() {
 
@@ -30,25 +27,10 @@ class MainViewModel @Inject constructor(
 
     val productCartList = getAllProductsCartsUseCase()
 
-    val productList = getAllProductsUseCase()
-
-    // TODO возможно сделать новую view model или
-    // реализовать загрузку через worker
-    fun loadData() {
-        viewModelScope.launch {
-            loadDataUseCase()
-        }
-    }
 
     fun deleteAllProductsCart() {
         viewModelScope.launch {
             deleteAllProductsCartUseCase()
-        }
-    }
-
-    fun addProductCart(product: Product) {
-        viewModelScope.launch {
-            addProductCartUseCase(product)
         }
     }
 
