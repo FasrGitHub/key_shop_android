@@ -20,14 +20,6 @@ class MainViewModel @Inject constructor(
     private val deleteAllProductsCartUseCase: DeleteAllProductsCartUseCase,
 ) : ViewModel() {
 
-    // TODO делается запрос каждый раз когда создается view возможно сделать новую view model или
-    // реализовать загрузку через worker
-    init {
-        viewModelScope.launch {
-            loadDataUseCase()
-        }
-    }
-
     private val _errorInputEmail = MutableLiveData<Boolean>()
     val errorInputEmail: LiveData<Boolean>
         get() = _errorInputEmail
@@ -39,6 +31,14 @@ class MainViewModel @Inject constructor(
     val productCartList = getAllProductsCartsUseCase()
 
     val productList = getAllProductsUseCase()
+
+    // TODO возможно сделать новую view model или
+    // реализовать загрузку через worker
+    fun loadData() {
+        viewModelScope.launch {
+            loadDataUseCase()
+        }
+    }
 
     fun deleteAllProductsCart() {
         viewModelScope.launch {

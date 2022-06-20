@@ -2,14 +2,18 @@ package com.example.ps_shop_android.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ps_shop_android.R
 import com.example.ps_shop_android.databinding.FragmentMainBinding
 import com.example.ps_shop_android.presentation.adapters.ProductAdapter
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -44,22 +48,27 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.ivBasked.setOnClickListener {
-            launchShoppingCartFragment()
-        }
-
-        setupRecyclerView()
-
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
-        viewModel.productList.observe(viewLifecycleOwner) {
-            productAdapter.submitList(it)
+
+        lifecycleScope.launch {
+            loadProducts()
         }
-        setupClickListener()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private suspend fun loadProducts() {
+        binding.progress.isVisible = true
+        delay(2000)
+        viewModel.loadData()
+        binding.progress.isInvisible = true
+
+        setupRecyclerView()
+        setupObserver()
+        setupClickListeners()
     }
 
     private fun launchShoppingCartFragment(){
@@ -72,9 +81,18 @@ class MainFragment : Fragment() {
         rvShopList.adapter = productAdapter
     }
 
-    private fun setupClickListener() {
+    private fun setupObserver() {
+        viewModel.productList.observe(viewLifecycleOwner) {
+            productAdapter.submitList(it)
+        }
+    }
+
+    private fun setupClickListeners() {
         productAdapter.onProductClickListener = {
             viewModel.addProductCart(it)
+        }
+        binding.ivBasked.setOnClickListener {
+            launchShoppingCartFragment()
         }
     }
 }
